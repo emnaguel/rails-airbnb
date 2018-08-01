@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <h2><strong>All our Flats</strong></h2>
+  </div>
+  <div class="row">
+    <p>You searched for <strong><%= @query %></strong>. We found <%= @flats.count %> flats out of our <%= Flat.count %> on our website.</p>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <% @flats.each do |flat| %>
+    <div class="col-xs-12 col-sm-4">
+
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= flat.picture_url %>');">
+        <div class="card-category"><%=flat.name%></div>
+        <div class="card-description">
+          <p><%= flat.address %></p>
+          <div class = "description"><p><%= flat.price_per_night %><i class="fas fa-euro-sign"></i></p><p><%= flat.number_of_guests %><i class="fas fa-users"></i></p></div>
+        <div class = "card-link">
+          <%= link_to flat_path(flat.id) do %>
+            <i class="fas fa-info-circle"></i>
+          <% end %>
+          <%= link_to edit_flat_path(flat.id) do %>
+            <i class="far fa-edit"></i>
+          <% end %>
+          <%= link_to flat_path(flat.id), method: :delete, data: { confirm: "Are you sure?"} do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+
+        </div>
+        </div>
+      </div>
+    </div>
+      <% end %>
+    <!-- insert <div class="card"> -->
+
+
+    </div>
+  </div>
+
